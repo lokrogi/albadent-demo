@@ -111,6 +111,10 @@ h2 {
   font-weight: 600;
 }
 
+.lead--mobile {
+  display: none;
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
@@ -238,15 +242,110 @@ h2 {
 
 .hero__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'intro'
+    'visual'
+    'rest';
+  gap: 2rem;
+  align-items: start;
+}
+
+.hero__intro {
+  grid-area: intro;
+}
+
+.hero__visual {
+  grid-area: visual;
+}
+
+.hero__rest {
+  grid-area: rest;
+}
+
+@media (min-width: 901px) {
+  .hero__grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'intro visual'
+      'rest visual';
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero__visual {
+    align-self: center;
+  }
 }
 
 @media (max-width: 900px) {
-  .hero__grid {
-    grid-template-columns: 1fr;
+  .header__inner {
+    padding: 0.65rem 1.5rem;
   }
+
+  .hero {
+    padding: 1rem 0 2.5rem;
+  }
+
+  .hero__grid {
+    gap: 1rem;
+  }
+
+  .hero__intro h1 {
+    font-size: clamp(1.35rem, 6vw, 1.65rem);
+    line-height: 1.28;
+  }
+
+  .hero__intro .eyebrow {
+    margin-bottom: 0.65rem;
+  }
+
+  .hero__visual {
+    margin-bottom: 0.25rem;
+  }
+
+  .phone-mock__cta {
+    display: none;
+  }
+
+  .hero__rest-inner {
+    background: var(--white);
+    border: 1px solid rgba(29, 186, 181, 0.14);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.15rem 1.35rem;
+    box-shadow: 0 4px 18px rgba(14, 154, 149, 0.07);
+  }
+
+  .lead--desktop {
+    display: none;
+  }
+
+  .lead--mobile {
+    display: block;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.15rem;
+  }
+
+  .hero__actions {
+    margin-bottom: 0;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+
+  .hero__note {
+    display: none;
+  }
+}
+
+.hero__intro h1 {
+  margin-bottom: 0;
+}
+
+.hero__rest .lead {
+  margin-top: 0;
 }
 
 .hero__actions {
@@ -492,24 +591,54 @@ h2 {
 }
 
 /* For clinic */
-.for-clinic {
+.for-clinic__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 2.5rem;
   align-items: start;
 }
 
 @media (max-width: 768px) {
-  .for-clinic {
+  .for-clinic__grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
+}
+
+.for-clinic__main h2 {
+  max-width: 22rem;
 }
 
 .for-clinic__lead {
   font-size: 1.05rem;
   color: var(--text);
-  margin: 0 0 1.5rem;
+  margin: 0 0 1rem;
   line-height: 1.6;
+}
+
+.for-clinic__body {
+  font-size: 1rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.65;
+  max-width: 34rem;
+}
+
+.for-clinic__expansion {
+  background: var(--white);
+  border: 1px solid rgba(29, 186, 181, 0.12);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.5rem 1.25rem;
+  box-shadow: 0 4px 20px rgba(14, 154, 149, 0.06);
+}
+
+.for-clinic__expansion-title {
+  margin: 0 0 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-dark);
 }
 
 .for-clinic__teasers {
@@ -520,10 +649,11 @@ h2 {
 
 .for-clinic__teasers li {
   position: relative;
-  padding: 0.75rem 0 0.75rem 1.5rem;
+  padding: 0.7rem 0 0.7rem 1.5rem;
   border-bottom: 1px solid rgba(29, 186, 181, 0.1);
-  font-size: 0.88rem;
-  color: var(--muted);
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.5;
 }
 
 .for-clinic__teasers li::before {
@@ -536,41 +666,34 @@ h2 {
 
 .for-clinic__teasers li:last-child {
   border-bottom: none;
+  padding-bottom: 0;
 }
 
-.for-clinic__safety {
-  margin-top: 1.5rem;
+.for-clinic__notice {
+  margin-top: 2.5rem;
   padding: 1rem 1.25rem;
-  background: var(--bg-alt);
-  border-radius: var(--radius);
-  font-size: 0.85rem;
-  color: var(--muted);
+  border-left: 4px solid var(--teal-dark);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  box-shadow: 0 1px 3px rgba(14, 154, 149, 0.06);
 }
 
-.for-clinic__points {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.for-clinic__points li {
-  position: relative;
-  padding: 0.85rem 0 0.85rem 1.75rem;
-  border-bottom: 1px solid rgba(29, 186, 181, 0.1);
-  font-size: 0.95rem;
-  color: var(--text);
-}
-
-.for-clinic__points li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--teal-dark);
+.for-clinic__notice-label {
+  display: block;
+  font-size: 0.68rem;
   font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  margin-bottom: 0.4rem;
 }
 
-.for-clinic__points li:last-child {
-  border-bottom: none;
+.for-clinic__notice p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.55;
+  max-width: 52rem;
 }
 
 /* CTA box */

@@ -4,32 +4,13 @@ export default function Hero({ onOpenChat }) {
   return (
     <section className="hero">
       <div className="wrap hero__grid">
-        <div className="hero__copy">
+        <div className="hero__intro">
           <p className="eyebrow">
             Przygotowane dla {clinic.name} · {clinic.city}
           </p>
           <h1>
             Pacjenci pytają wieczorem. <em>Ala odpowiada od razu</em> — na Waszej stronie.
           </h1>
-          <p className="lead">
-            Wiele pytań pada poza godzinami recepcji — o cennik, terminy i dostępność.{' '}
-            <strong>{clinic.assistant.name}</strong> to asystentka recepcji, która zna Państwa
-            ofertę ze strony <strong>{clinic.websiteDisplay}</strong>. Odpowiada od razu, w
-            profesjonalnym tonie, i zbiera dane do wizyty, gdy pacjent chce umówić termin.
-          </p>
-          <div className="hero__actions">
-            <button
-              type="button"
-              className="btn btn--primary btn--lg"
-              data-chat-trigger
-              onClick={onOpenChat}
-            >
-              Zobacz, jak odpowiada {clinic.assistant.name}
-            </button>
-          </div>
-          <p className="hero__note">
-            ↘ Kliknij przycisk lub ikonę w rogu — rozmawiaj jak pacjent
-          </p>
         </div>
 
         <div className="hero__visual">
@@ -62,6 +43,35 @@ export default function Hero({ onOpenChat }) {
             >
               Otwórz prawdziwą rozmowę →
             </button>
+          </div>
+        </div>
+
+        <div className="hero__rest">
+          <div className="hero__rest-inner">
+            <p className="lead lead--desktop">
+              Wiele pytań pada poza godzinami recepcji — o cennik, terminy i dostępność.{' '}
+              <strong>{clinic.assistant.name}</strong> to asystentka recepcji, która zna Państwa
+              ofertę ze strony <strong>{clinic.websiteDisplay}</strong>. Odpowiada od razu, w
+              profesjonalnym tonie, i zbiera dane do wizyty, gdy pacjent chce umówić termin.
+            </p>
+            <p className="lead lead--mobile">
+              <strong>{clinic.assistant.name}</strong> zna ofertę z{' '}
+              <strong>{clinic.websiteDisplay}</strong> — odpowiada po godzinach recepcji i zbiera
+              zgłoszenia do wizyty.
+            </p>
+            <div className="hero__actions">
+              <button
+                type="button"
+                className="btn btn--primary btn--lg"
+                data-chat-trigger
+                onClick={onOpenChat}
+              >
+                Zobacz, jak odpowiada {clinic.assistant.name}
+              </button>
+            </div>
+            <p className="hero__note">
+              ↘ Kliknij przycisk lub ikonę w rogu — rozmawiaj jak pacjent
+            </p>
           </div>
         </div>
       </div>

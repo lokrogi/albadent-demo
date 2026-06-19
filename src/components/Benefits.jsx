@@ -25,7 +25,6 @@ export default function Benefits() {
       <div className="wrap">
         <div className="section-head">
           <h2>Co to daje gabinetowi na co dzień</h2>
-          <p>Trzy rzeczy, które właściciel zauważa jako pierwsze</p>
         </div>
         <div className="benefits-grid">
           {items.map((item) => (
