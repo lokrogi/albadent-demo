@@ -24,15 +24,12 @@ export default function Hero({ onOpenChat }) {
             <div className="phone-mock__body">
               <div className="bubble bubble--user">Ile kosztuje higienizacja?</div>
               <div className="bubble bubble--bot">
-                Kompleksowa higienizacja — według cennika od 380 zł. Ceny są orientacyjne;
-                dokładną wycenę ustala lekarz przy wizycie.
+                Od 380 zł według cennika — wycenę potwierdzi lekarz. Chętnie umówię wizytę: wystarczy
+                imię i telefon.
               </div>
-              <div className="bubble bubble--user">
-                Anna, 501 234 567 — chciałabym w przyszłym tygodniu.
-              </div>
+              <div className="bubble bubble--user">Anna, 501 234 567</div>
               <div className="bubble bubble--bot">
-                Dziękuję, Pani Anno. Zapisuję zgłoszenie — recepcja oddzwoni w godzinach pracy
-                gabinetu.
+                Dziękuję, Pani Anno. Zapisuję zgłoszenie — recepcja oddzwoni między 8:00 a 20:00.
               </div>
             </div>
             <button
