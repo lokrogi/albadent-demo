@@ -1,3 +1,5 @@
+export { clinic } from './config/clinic';
+
 export const flowiseConfig = {
   chatflowId: import.meta.env.VITE_FLOWISE_CHATFLOW_ID ?? '',
   apiHost: (import.meta.env.VITE_FLOWISE_API_HOST ?? '').replace(/\/$/, ''),

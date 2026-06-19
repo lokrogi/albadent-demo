@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { flowiseConfig, isFlowiseConfigured } from '../config';
+import { clinic } from '../config/clinic';
 
 let pendingOpen = false;
 
@@ -59,42 +60,47 @@ function isChatTrigger(event) {
   return Boolean(target.closest('[data-chat-trigger]'));
 }
 
-const chatTheme = {
-  button: {
-    backgroundColor: '#0c2d48',
-    right: 24,
-    bottom: 24,
-    size: 58,
-    dragAndDrop: true,
-    iconColor: 'white',
-  },
-  chatWindow: {
-    showTitle: true,
-    title: 'Ala · Albadent',
-    titleBackgroundColor: '#0c2d48',
-    titleTextColor: '#ffffff',
-    welcomeMessage:
-      'Dzień dobry! Jestem Ala — asystentka przygotowana dla gabinetu Albadent. Chętnie pokażę, jak mogę odpowiadać pacjentom na pytania o cennik, godziny i umawiać wizyty. W czym mogę pomóc?',
-    backgroundColor: '#ffffff',
-    height: 580,
-    width: 420,
-    fontSize: 15,
-    botMessage: { backgroundColor: '#f4f7f9', textColor: '#1a2332' },
-    userMessage: { backgroundColor: '#0c2d48', textColor: '#ffffff' },
-    textInput: {
-      placeholder: 'Napisz jak pacjent…',
+function buildChatTheme() {
+  const { primaryDark, heading } = clinic.theme;
+  const { name, website, websiteDisplay } = clinic;
+  const assistantName = clinic.assistant.name;
+
+  return {
+    button: {
+      backgroundColor: primaryDark,
+      right: 24,
+      bottom: 24,
+      size: 58,
+      dragAndDrop: true,
+      iconColor: 'white',
+    },
+    chatWindow: {
+      showTitle: true,
+      title: `${assistantName} · ${name}`,
+      titleBackgroundColor: primaryDark,
+      titleTextColor: '#ffffff',
+      welcomeMessage: `Dzień dobry! Jestem ${assistantName} — asystentka recepcji gabinetu ${name}. Chętnie odpowiem na pytania o cennik, godziny i usługi. W czym mogę pomóc?`,
       backgroundColor: '#ffffff',
-      textColor: '#1a2332',
-      sendButtonColor: '#0c2d48',
+      height: 580,
+      width: 420,
+      fontSize: 15,
+      botMessage: { backgroundColor: '#f0fafa', textColor: heading },
+      userMessage: { backgroundColor: primaryDark, textColor: '#ffffff' },
+      textInput: {
+        placeholder: 'Napisz jak pacjent…',
+        backgroundColor: '#ffffff',
+        textColor: heading,
+        sendButtonColor: primaryDark,
+      },
+      footer: {
+        text: `Odpowiedzi na podstawie ${websiteDisplay}`,
+        textColor: '#94a3b8',
+        company: name,
+        companyLink: website,
+      },
     },
-    footer: {
-      text: 'Demo · Odpowiedzi ze strony albadent.pl',
-      textColor: '#94a3b8',
-      company: 'Albadent',
-      companyLink: 'https://albadentrzeszow.pl',
-    },
-  },
-};
+  };
+}
 
 export function useFlowiseChat() {
   useEffect(() => {
@@ -122,7 +128,7 @@ export function useFlowiseChat() {
           chatflowid: flowiseConfig.chatflowId,
           apiHost: flowiseConfig.apiHost,
           chatflowConfig: { returnSourceDocuments: false },
-          theme: chatTheme,
+          theme: buildChatTheme(),
         });
         if (cancelled) return;
 
@@ -133,7 +139,7 @@ export function useFlowiseChat() {
           openChatPanel();
         }
       } catch (err) {
-        console.error('Nie udało się załadować czatu Flowise:', err);
+        console.error('Nie udało się załadować asystenta Flowise:', err);
       }
     })();
 
